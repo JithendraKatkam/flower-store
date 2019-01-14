@@ -1,16 +1,19 @@
 import React, { Component } from 'react';
 import FlowerTable from './FlowerTable';
 import FlowerForm from './FlowerForm';
+import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
+import flowerActions from './FlowerAction';
 
 class FlowerStoreApp extends Component {
-    state = {
-        flowers: [],
-        flower:{}
+     
+  state = {
+        all_flowers: []     
     };
 
+
     removeFlower = index => {
-        const { flowers } = this.state;
-    
+        const { flowers } = this.props;    
         this.setState({
             flowers: flowers.filter((flower, i) => { 
                 return i !== index;
@@ -19,17 +22,23 @@ class FlowerStoreApp extends Component {
     }
 
     addFlower = flower => {
-        this.setState({flowers: [...this.state.flowers, flower]});
-        //this.props.addFlower(flower)
+        this.props.onAdd(flower)   
+    }
 
+    listFlowers = () => {
+        this.props.onList()
+        const {flowers} = this.props
+         this.setState({
+            all_flowers: flowers
+         });  
+               
     }
     updateFlower = flower => {
-        this.setState({flowers: [...this.state.flowers, flower]});
-        //this.props.addFlower(flower)
+        this.props.updateFlower(flower)
     }
 
     render() {
-        const { flowers } = this.state;
+        const { all_flowers } = this.state;
         
         return (
             <div className="container">
@@ -42,12 +51,42 @@ class FlowerStoreApp extends Component {
                 <p></p>
                 <h3>List of flowers added.</h3>
 
+                <input 
+                    type="button" 
+                    value="List All Flowers" 
+                    onClick={this.listFlowers} />
+
                 <FlowerTable
-                    flowerData={flowers}
+                    flowerData={all_flowers}
                     removeFlower={this.removeFlower}
                 />
             </div>
         );
     }
 }
-export default FlowerStoreApp;
+
+FlowerStoreApp.propTypes = {
+    flowers: PropTypes.array,
+    //flower: PropTypes.object,
+    onAdd: PropTypes.func,
+    onUpdate: PropTypes.func,
+    onRemove: PropTypes.func,
+    onList: PropTypes.func
+  };
+
+const mapStateToProps = (state) => {
+    return {
+      flowers: state.flowers
+    }
+}
+const mapDispatchToProps = (dispatch) => {
+    return {
+      onAdd: (flower) => dispatch(flowerActions.addFlower(flower)),
+      onUpdate: (flower) => dispatch(flowerActions.addFlower(flower)),
+      onRemove: (flower) => dispatch(flowerActions.addFlower(flower)),
+      onList: () => dispatch(flowerActions.listFlowers())
+    }
+}
+const FlowerStoreAppContainer = connect(mapStateToProps, mapDispatchToProps)(FlowerStoreApp)
+
+export default FlowerStoreAppContainer;

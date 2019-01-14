@@ -10,23 +10,8 @@ class FlowerForm extends Component {
         this.state = this.initialState;
     }
 
-    addFlower = event => {
-        const { name, value } = event.target;
-        this.setState({
-            [name] : value
-        });
-    }
-    
-    updateFlower = event => {
-        const { name, value } = event.target;
-        this.setState({
-            [name] : value
-        });
-    }
-
     submitForm = () => {
         this.props.addFlower(this.state);
-        //this.props.updateFlower(this.state);
         this.setState(this.initialState);
     }
 

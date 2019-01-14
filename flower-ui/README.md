@@ -1,14 +1,15 @@
 
 ## Installation
 
-install node from https://nodejs.org/en/
-and run the following
+Install node from [NODE website](https://nodejs.org/en/)
+and run the following to create react basic application
 npx create-react-app flower-ui
 
 change to flowerui directory and execute the below commands.
 npm install
 npm install --save redux 
 npm install --save react-redux
+npm install --save redux-saga
 npm install --save-dev redux-devtools
 
 
@@ -23,16 +24,16 @@ To create a production build, use yarn build.
 
 ## Future enhancements -
 
-1 -> Add redux and saga for state management and middleware
-2 -> Invoke the REST services  by Saga middleware
-3 -> Add Graph QL and other enhancements..
-4 -> Add Hooks
-5 -> other enhancements such adding flower images, making a proper flower store
-6 -> Adding more functionalities such as adding flowers to cart and..checking out cart.
-7 -> using dummy service to authorize payments
-8 -> finally shipping status, feedback etc...
-9 -> Adding blogging service to the site for the flower and nature lovers..
-10 -> more...
+1. -> Add redux and saga for state management and middleware
+2. -> Invoke the REST services  by Saga middleware
+3. -> Add Graph QL and other enhancements..
+4. -> Add Hooks
+5. -> other enhancements such adding flower images, making a proper flower store
+6. -> Adding more functionalities such as adding flowers to cart and..checking out cart.
+7. -> using dummy service to authorize payments
+8. -> finally shipping status, feedback etc...
+9. -> Adding blogging service to the site for the flower and nature lovers..
+10. -> more...
 
 Notes: 
 1. Read below for more building and deployment and production ready builds.
